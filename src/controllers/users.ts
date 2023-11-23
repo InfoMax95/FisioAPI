@@ -1,6 +1,6 @@
 import express from "express";
 import { body, validationResult } from "express-validator";
-import { deleteUserById, getUserById, getUsers } from "models/user";
+import { deleteUserById, getUserById, getUsers } from "../models/user";
 
 export const getAllUsers = async (req: express.Request, res: express.Response) => {
     const errors = validationResult(req);

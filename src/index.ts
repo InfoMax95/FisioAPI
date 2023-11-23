@@ -5,7 +5,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import compression from "compression";
-import router from "router";
+import router from "./router";
 
 const app = express();
 
@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 8000;
-const uri: string = process.env.DB_CONN || "mongodb+srv://massimilianogasaro95:<password>@api-giorgia.k3obtav.mongodb.net/?retryWrites=true&w=majority";
+const uri: string = process.env.DB_CONN || "mongodb+srv://massimilianogasaro95:TT52z7ZZ65NfJLVs@api-giorgia.k3obtav.mongodb.net/?retryWrites=true&w=majority";
 
 const server = http.createServer(app);
 
@@ -36,7 +36,7 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
     // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
+    await client.db("blog").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
@@ -48,4 +48,4 @@ server.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}/`)
 });
 
-run().catch(console.dir);
+//run().catch(console.dir);
