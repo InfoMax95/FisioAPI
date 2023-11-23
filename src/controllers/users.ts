@@ -1,8 +1,13 @@
 import express from "express";
-
+import { body, validationResult } from "express-validator";
 import { deleteUserById, getUserById, getUsers } from "models/user";
 
 export const getAllUsers = async (req: express.Request, res: express.Response) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
     try {
         const users = await getUsers();
         return res.status(200).json(users).end();
@@ -32,6 +37,7 @@ export const updateUser = async (req: express.Request, res: express.Response) =>
         if (!username) return res.sendStatus(400);
 
         const user = await getUserById(id);
+        if (!user) return res.sendStatus(404);
         user.username = username;
         await user.save();
         return res.status(200).json(user).end();

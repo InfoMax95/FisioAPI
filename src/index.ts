@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import { MongoClient, ServerApiVersion } from 'mongodb';
 import http from "http";
 import cors from "cors";
@@ -12,22 +12,15 @@ const app = express();
 app.use(cors({
     credentials: true,
 }));
-
 app.use("/", router());
-
 app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
 
+const PORT = process.env.PORT || 8000;
+const uri: string = process.env.DB_CONN || "mongodb+srv://massimilianogasaro95:<password>@api-giorgia.k3obtav.mongodb.net/?retryWrites=true&w=majority";
+
 const server = http.createServer(app);
-
-server.listen(8080, () => {
-    console.log("Server is running at http://localhost:8080/")
-});
-
-// const MONGO_URL = "mongodb+srv://massimilianogasaro95:<password>@api-giorgia.k3obtav.mongodb.net/?retryWrites=true&w=majority";
-
-const uri = "mongodb+srv://massimilianogasaro95:<password>@api-giorgia.k3obtav.mongodb.net/?retryWrites=true&w=majority";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -50,4 +43,9 @@ async function run() {
     await client.close();
   }
 }
+
+server.listen(PORT, () => {
+    console.log(`Server is running at http://localhost:${PORT}/`)
+});
+
 run().catch(console.dir);

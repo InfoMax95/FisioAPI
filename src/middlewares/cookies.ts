@@ -6,7 +6,7 @@ import { getUserBySessionToken } from "models/user";
 export const isOwner = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     try {
         const { id } = req.params;
-        const currentUserId = get(req, "identity._id") as string;
+        const currentUserId = get(req, "identity._id") as unknown as string;
 
         if (!currentUserId) return res.sendStatus(403);
         if (currentUserId !== id) return res.sendStatus(403);
