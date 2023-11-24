@@ -1,4 +1,4 @@
-import { getAllPosts } from "../controllers/posts";
+import { createPost, getAllPosts, getPost } from "../controllers/posts";
 import express from "express";
 import { body } from "express-validator";
 
@@ -10,6 +10,6 @@ const taskValidationRules = [
 
 export default (router: express.Router) => {
     router.get("/posts", getAllPosts);
-    router.get("/posts/:id", getAllPosts);
-    router.post("/post", getAllPosts);
+    router.get("/posts/:id", getPost);
+    router.post("/post", createPost);
 }

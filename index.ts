@@ -1,3 +1,4 @@
+require('dotenv').config();
 import express, { Request, Response } from "express";
 import { MongoClient, ServerApiVersion } from 'mongodb';
 import http from "http";
@@ -5,9 +6,10 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import compression from "compression";
-import router from "./router";
+import router from "./src/router";
 
 const app = express();
+// console.log(app.get("env"));
 
 app.use(cors({
     credentials: true,
@@ -17,7 +19,7 @@ app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT;
 const uri: string = process.env.DB_CONN || "mongodb+srv://massimilianogasaro95:TT52z7ZZ65NfJLVs@api-giorgia.k3obtav.mongodb.net/?retryWrites=true&w=majority";
 
 const server = http.createServer(app);
@@ -48,4 +50,4 @@ server.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}/`)
 });
 
-//run().catch(console.dir);
+run().catch(console.dir);

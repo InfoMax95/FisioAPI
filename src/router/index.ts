@@ -6,8 +6,8 @@ import posts from "./posts";
 const router = express.Router();
 
 export default(): express.Router => {
-    authentication(router);
-    users(router);
+    // authentication(router);
+    // users(router);
     posts(router);
     return router;
 }

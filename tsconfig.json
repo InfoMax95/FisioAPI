@@ -3,7 +3,6 @@
         "target": "es6",
         "module": "commonjs",
         "outDir": "./dist",
-        "baseUrl": "src", // to import component 
         "sourceMap": true,
         "noImplicitAny": true,
         "strict": true,
@@ -11,6 +10,6 @@
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true
     },
-    "include": ["src/**/*.ts"],
+    "include": ["src/**/*.ts", "index.ts"],
     "exclude": ["node_modules"]
 }
