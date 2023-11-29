@@ -7,7 +7,8 @@ const PostSchema = new mongoose.Schema({
     tags: { type: [String], required: true },
     author: { type: String, required: true },
     level: { type: String, required: true, enumValues: ["entry", "expert"] },
-    creation_date: { type: Date, required: true }
+    creation_date: { type: Date, required: true },
+    summary: { type: String, required: true }
 });
 
 export const PostModel = mongoose.model("Post", PostSchema);
